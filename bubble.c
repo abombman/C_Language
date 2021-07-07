@@ -13,10 +13,12 @@ void bubble_sort(int arr[],int sz)
 	{
 		for(j = 0;j < (sz-1-i);j++)
 		{	
-			if(arr[j] > arr[j+1])
+			if (arr[j] > arr[j + 1])
+			{
 				tmp = arr[j];
-				arr[j] = arr[j+1];
-				arr[j+1] = tmp;
+				arr[j] = arr[j + 1];
+				arr[j + 1] = tmp;
+			}
 		}
 	}
 }
@@ -34,7 +36,7 @@ int main()
 	bubble_sort(arr,size);
 	for(i = 0;i < size;i++)
 	{
-		printf("%d ",arr[1]);
+		printf("%d ",arr[i]);
 	}
 	printf("\n");
 	return 0;
