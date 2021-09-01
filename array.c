@@ -6,6 +6,7 @@ void test(int** ptr)
 
 int main()
 {
+	int i = 0;
 	int arr[10] = { 1,2,3,4,5,6,7,8,9,10 };
 	int brr[5][10] = { { 1,2,3,4,5,6,7,8,9,10 } ,{ 1,2,3,4,5,6,7,8,9,10 } ,{ 1,2,3,4,5,6,7,8,9,10 } ,{ 1,2,3,4,5,6,7,8,9,10 } ,{ 1,2,3,4,5,6,7,8,9,10 } };
 	int* crr[10] = { NULL };
@@ -16,11 +17,13 @@ int main()
 	int(*cp)[1] = NULL;		//[1] 可以理解为bq的步长为1个int
 
 	ap = arr;				//ap == arr == &arr[0],首元素arr[0]的类型是int					|*****|
+        aq = (int(*)[10])(&arr);
 
 	//aq = arr; 此句如果这样写，会出现：warning C4047 : “ = ” : “int(*)[10]”与“int * ”的间接级别不同
 	aq = &arr;				//无warning，可见‘&’操作符不能简单理解为arr的地址，即不能简单理解为二级指针，此处是取arr的步进，‘&’有两个意思：取地址和取步进，‘*’同理
 
 	//cp = arr; 此句如果这样写，会出现：warning C4047 : “ = ” : “int(*)[1]”与“int * ”的间接级别不同，逻辑上“int(*)[1]”与“int * ”相同，但形式上不同	|*****|
+        cp = (int(*)[1]) &arr[0];
 
 	printf("ap = \t%p\n", ap);
 	printf("ap+1 = \t%p\n", ap + 1);//(ap + 1) == &ap[1] == &arr[1]
@@ -29,6 +32,8 @@ int main()
 	printf("aq = \t%p\n", aq[0]);
 	printf("aq+1 = \t%p\n", aq + 1);
 	printf("aq+1 = \t%p\n", aq[1]); //(aq + 1) == &aq[1],但是aq[1]指向的数组不存在，aq与ap的步进不同
+        printf("cp: *cp = \t%p\n",*cp);
+	printf("cp: **cp = \t%d\n",**cp);
 
 	printf("\n");
 
