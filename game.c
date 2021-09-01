@@ -1,6 +1,6 @@
 #include "game.h"
 
-void InitBoard(char Board[ROW][COL],int row,int col)
+void InitBoard(char (*Board)[COL],int row,int col)
 {
 	int i = 0;
 	int j = 0;
